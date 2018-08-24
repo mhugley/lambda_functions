@@ -37,9 +37,9 @@ def lambda_handler(event, context):
             NextToken='string'
         )
         for i in response["Tags"]:
-            cmd = i['Value']
+            val = i['Value']
             key = i['Key']
-            if cmd != cmd.lower():
+            if val != val.lower():
                 response = ec2.create_tags(
                     DryRun=False,
                     Resources=[
@@ -48,7 +48,7 @@ def lambda_handler(event, context):
                     Tags=[
                         {
                             'Key': key,
-                            'Value': cmd.lower()
+                            'Value': val.lower()
                         },
                     ]
                 )
